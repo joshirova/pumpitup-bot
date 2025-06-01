@@ -6,23 +6,22 @@ from telegram.ext import (
     MessageHandler,
     filters,
 )
-from logic.workout_selector import select_workout
+from logic.workout_selector import select_workout_plan
+from logic.ml.ml_model import predict_plan_indices
 
-# Этапы диалога
-GOAL, GENDER, AGE, LEVEL, TYPE, CHOOSE_PLAN = range(6)
-
-# Хранилище прогресса
+GOAL, GENDER, AGE, LEVEL, TYPE, HEIGHT, WEIGHT, SHOW_PLAN = range(8)
 user_progress = {}
+RETURN_BUTTON = ["🔁 Вернуться в начало"]
+
+def markup_with_return(options):
+    return ReplyKeyboardMarkup([options, RETURN_BUTTON], one_time_keyboard=True, resize_keyboard=True)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    reply_keyboard = [['Похудение', 'Поддержание формы', 'Набор массы']]
-    markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
-
+    markup = markup_with_return(['Похудение', 'Поддержание формы', 'Набор массы'])
     await update.message.reply_text(
         "👋 Привет! Я *PumpItUp* — твой персональный фитнес-бот 🤖\n\n"
-        "Я помогу тебе подобрать эффективную, индивидуальную тренировку — дома или в зале.\n"
-        "С учётом твоих целей, пола, возраста и уровня подготовки 💪\n\n"
-        "Ты будешь становиться сильнее, стройнее и увереннее с каждой тренировкой.\n\n"
+        "Я помогу тебе подобрать эффективный план тренировок на неделю — дома или в зале.\n"
+        "С учётом твоих целей, пола, возраста, уровня подготовки и даже телосложения 💪\n\n"
         "Начнём? 💥 Какая у тебя цель?",
         reply_markup=markup,
         parse_mode="Markdown"
@@ -30,97 +29,96 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return GOAL
 
 async def goal(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.text == RETURN_BUTTON[0]:
+        return await start(update, context)
     context.user_data["goal"] = update.message.text
-    markup = ReplyKeyboardMarkup([['Мужчина', 'Женщина']], one_time_keyboard=True, resize_keyboard=True)
-    await update.message.reply_text("Отлично! Теперь скажи, кто ты по полу:", reply_markup=markup)
+    await update.message.reply_text("Какой у тебя пол?", reply_markup=markup_with_return(['Мужчина', 'Женщина']))
     return GENDER
 
 async def gender(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.text == RETURN_BUTTON[0]:
+        return await start(update, context)
     context.user_data["gender"] = update.message.text
-    markup = ReplyKeyboardMarkup([['До 60', '60+']], one_time_keyboard=True, resize_keyboard=True)
-    await update.message.reply_text("Сколько тебе лет? Выбери категорию:", reply_markup=markup)
+    await update.message.reply_text("Укажи возрастную категорию:", reply_markup=markup_with_return(['16–20', '20–30', '30–40', '50+']))
     return AGE
 
 async def age(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.text == RETURN_BUTTON[0]:
+        return await start(update, context)
     context.user_data["age"] = update.message.text
-    markup = ReplyKeyboardMarkup([['Новичок', 'Средний', 'Опытный']], one_time_keyboard=True, resize_keyboard=True)
-    await update.message.reply_text("Какой у тебя уровень физической подготовки?", reply_markup=markup)
+    await update.message.reply_text("Какой у тебя уровень подготовки?", reply_markup=markup_with_return(['Новичок', 'Средний', 'Опытный']))
     return LEVEL
 
 async def level(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.text == RETURN_BUTTON[0]:
+        return await start(update, context)
     context.user_data["level"] = update.message.text
-    markup = ReplyKeyboardMarkup([['Дом', 'Зал']], one_time_keyboard=True, resize_keyboard=True)
-    await update.message.reply_text("Где ты хочешь тренироваться? 🏠 или 🏋️‍♂️", reply_markup=markup)
+    await update.message.reply_text("Где ты будешь тренироваться?", reply_markup=markup_with_return(['Дом', 'Зал']))
     return TYPE
 
 async def type_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.text == RETURN_BUTTON[0]:
+        return await start(update, context)
     context.user_data["type"] = update.message.text
-    user_id = update.effective_user.id
+    await update.message.reply_text("Введи свой рост в сантиметрах (например, 170):")
+    return HEIGHT
 
-    user_progress[user_id] = set()  # сбрасываем историю выполненных тренировок
-    markup = ReplyKeyboardMarkup([['1', '2', '3']], one_time_keyboard=True, resize_keyboard=True)
-    await update.message.reply_text("Выбери, какую тренировку хочешь выполнить сегодня (1, 2 или 3):", reply_markup=markup)
-    return CHOOSE_PLAN
-
-async def choose_plan(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_id = update.effective_user.id
+async def height(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.text == RETURN_BUTTON[0]:
+        return await start(update, context)
     try:
-        plan_index = int(update.message.text) - 1
-        if not (0 <= plan_index <= 2):
-            raise ValueError
-    except ValueError:
-        await update.message.reply_text("Пожалуйста, выбери номер тренировки: 1, 2 или 3.")
-        return CHOOSE_PLAN
+        height_cm = int(update.message.text)
+        context.user_data["height"] = height_cm
+        await update.message.reply_text("Теперь введи свой вес в кг (например, 65):")
+        return WEIGHT
+    except:
+        await update.message.reply_text("Пожалуйста, введи число — твой рост в сантиметрах (например, 170):")
+        return HEIGHT
 
-    context.user_data["plan_index"] = plan_index
+async def weight(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.message.text == RETURN_BUTTON[0]:
+        return await start(update, context)
+    try:
+        weight = float(update.message.text)
+        height = context.user_data["height"]
+        bmi = round(weight / ((height / 100) ** 2), 1)
+        context.user_data["weight"] = weight
+        context.user_data["bmi"] = bmi
+        return await show_week_plan(update, context)
+    except:
+        await update.message.reply_text("Пожалуйста, введи число — твой вес в кг (например, 65):")
+        return WEIGHT
+
+async def show_week_plan(update: Update, context: ContextTypes.DEFAULT_TYPE):
     info = context.user_data
+    user_id = update.effective_user.id
 
-    result = select_workout(
+    indices = predict_plan_indices(
         goal=info["goal"],
         gender=info["gender"],
-        age=info["age"],
+        age_group=info["age"],
         level=info["level"],
         workout_type=info["type"],
-        plan_index=plan_index
+        bmi=info["bmi"]
     )
 
-    workout_text = "\n".join(f"💪 {step}" for step in result["plan"])
-    plan_number = result["index"]
-    duration = result["duration"]
+    days = ["Понедельник", "Среда", "Пятница"]
+    text = "📆 Следуй этому плану в течение месяца — и ты увидишь результат!\n\n"
 
-    reply_keyboard = [["✅ Я выполнил тренировку", "🔁 Подобрать заново"]]
-    markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True, resize_keyboard=True)
+    for i, day in zip(indices, days):
+        workout = select_workout_plan(
+            goal=info["goal"],
+            gender=info["gender"],
+            age=info["age"],
+            level=info["level"],
+            workout_type=info["type"],
+            plan_index=i
+        )
+        text += f"🗓️ *{day}* ({workout['duration']}):\n" + "\n".join(f"💪 {step}" for step in workout["plan"]) + "\n\n"
 
-    await update.message.reply_text(
-        f"🔥 Вот твоя программа!\n\n"
-        f"🎯 Цель: {info['goal']}\n"
-        f"👤 Пол: {info['gender']}\n"
-        f"🎂 Возраст: {info['age']}\n"
-        f"⚙️ Уровень: {info['level']}\n"
-        f"📍 Тип: {info['type']}\n"
-        f"🧩 Тренировка №{plan_number} из 3\n"
-        f"🕒 Длительность: {duration}\n\n"
-        f"{workout_text}",
-        reply_markup=markup
-    )
-    return CHOOSE_PLAN
-
-async def confirm_done(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_id = update.effective_user.id
-    plan_index = context.user_data.get("plan_index")
-
-    if user_id not in user_progress:
-        user_progress[user_id] = set()
-
-    user_progress[user_id].add(plan_index)
-
-    # После подтверждения возвращаем только кнопку «Подобрать заново»
     markup = ReplyKeyboardMarkup([["🔁 Подобрать заново"]], one_time_keyboard=True, resize_keyboard=True)
-    await update.message.reply_text(
-        "🏆 Отлично! Я отметил твою тренировку как выполненную.\nПродолжай в том же духе 💪",
-        reply_markup=markup
-    )
-    return CHOOSE_PLAN
+    await update.message.reply_text(text, reply_markup=markup, parse_mode="Markdown")
+    return SHOW_PLAN
 
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Диалог отменён. Напиши /start, чтобы начать заново.", reply_markup=ReplyKeyboardRemove())
@@ -130,7 +128,8 @@ def setup_handlers(app):
     conv_handler = ConversationHandler(
         entry_points=[
             CommandHandler("start", start),
-            MessageHandler(filters.Regex("🔁 Подобрать заново"), start)
+            MessageHandler(filters.Regex("🔁 Подобрать заново"), start),
+            MessageHandler(filters.Regex("🔁 Вернуться в начало"), start)
         ],
         states={
             GOAL: [MessageHandler(filters.TEXT & ~filters.COMMAND, goal)],
@@ -138,13 +137,12 @@ def setup_handlers(app):
             AGE: [MessageHandler(filters.TEXT & ~filters.COMMAND, age)],
             LEVEL: [MessageHandler(filters.TEXT & ~filters.COMMAND, level)],
             TYPE: [MessageHandler(filters.TEXT & ~filters.COMMAND, type_handler)],
-            CHOOSE_PLAN: [
-                MessageHandler(filters.Regex("^[123]$"), choose_plan),
-                MessageHandler(filters.Regex("✅ Я выполнил тренировку"), confirm_done),
-                MessageHandler(filters.Regex("🔁 Подобрать заново"), start)
-            ]
+            HEIGHT: [MessageHandler(filters.TEXT & ~filters.COMMAND, height)],
+            WEIGHT: [MessageHandler(filters.TEXT & ~filters.COMMAND, weight)],
+            SHOW_PLAN: [MessageHandler(filters.Regex("🔁 Подобрать заново"), start)],
         },
         fallbacks=[CommandHandler("cancel", cancel)],
     )
 
     app.add_handler(conv_handler)
+

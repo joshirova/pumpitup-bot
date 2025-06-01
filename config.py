@@ -1,2 +1,6 @@
-# config.py
-TOKEN = "8068661086:AAG7cKKeLMrKNrR6H7AmX6_BaKZQ-Tb20hs"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
