@@ -122,9 +122,16 @@ python bot.py
 - Пол: 12.14%
 - Уровень подготовки: 6.81%
 
-## Лицензия
+## CI/CD Status
 
-Проект распространяется под лицензией MIT.
+[![CI Pipeline](https://github.com/joshirova/pumpitup-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/joshirova/pumpitup-bot/actions)
+
+Автоматические проверки запускаются при каждом коммите:
+- ✅ Проверка синтаксиса Python
+- ✅ Установка зависимостей
+- ✅ Загрузка модели и модулей
+- ✅ Проверка отсутствия `.env` в репозитории
+
 
 ## Автор
 
