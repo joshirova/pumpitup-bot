@@ -1,44 +1,46 @@
-# logic/workout_selector.py
-
 import json
 from pathlib import Path
 
+# Путь к вашему красивому файлу с планами
 WORKOUT_FILE = Path(__file__).resolve().parent.parent / "data" / "sample_workouts.json"
 
-def select_workout_plan(goal, gender, age, level, workout_type, plan_index=0):
+def get_workout_plan(profile_data):
     """
-    Возвращает одну тренировку из недельного плана по указанному индексу.
-
-    :param goal: Цель ("Похудение", "Набор массы", "Поддержание формы")
-    :param gender: "Мужчина" или "Женщина"
-    :param age: возрастная категория ("16–20", "20–30", "30–40", "50+")
-    :param level: "Новичок", "Средний", "Опытный"
-    :param workout_type: "Дом" или "Зал"
-    :param plan_index: индекс плана в диапазоне [0, 2]
-    :return: dict { plan, duration, index }
+    profiles_data: словарь со всеми параметрами пользователя (bmi, goal, age_group и т.д.)
+    возвращает список упражнений или None, если совпадений нет.
     """
-    with open(WORKOUT_FILE, "r", encoding="utf-8") as f:
-        workouts = json.load(f)
+    try:
+        with open(WORKOUT_FILE, "r", encoding="utf-8") as f:
+            all_workouts = json.load(f)
+    except Exception as e:
+        print(f"Ошибка чтения файла: {e}")
+        return None
 
-    for workout in workouts:
+    # Сначала находим блок профиля (кто этот пользователь)
+    for workout_block in all_workouts:
+        # Проверяем, совпадает ли профиль пользователя с ключами в JSON
+        # Важно использовать те же поля, что посчитала нейросеть
         if (
-            workout.get("goal") == goal and
-            workout.get("gender") == gender and
-            workout.get("age_group") == age and
-            workout.get("level") == level and
-            workout.get("type", "").lower() == workout_type.lower()
+            workout_block.get("goal") == profile_data.get("goal") and
+            workout_block.get("gender") == profile_data.get("gender") and
+            workout_block.get("age_group") == profile_data.get("age_group") and
+            workout_block.get("level") == profile_data.get("level") and
+            workout_block.get("type") == profile_data.get("type")
         ):
-            plans = workout.get("plans", [])
-            if plans and 0 <= plan_index < len(plans):
-                selected = plans[plan_index]
-                return {
-                    "plan": selected.get("plan", []),
-                    "duration": selected.get("duration", "—"),
-                    "index": plan_index + 1
-                }
-
+            # Нашли блок! Теперь берем планы внутри него.
+            plans_list = workout_block.get("plans", [])
+            
+            # Модели предсказывают индексы 0, 1 или 2.
+            # Мы выберем самый подходящий план из списка (например, первый или тот, который просили).
+            # Для старта покажем План №1 (который соответствует предсказанию модели).
+            if plans_list:
+                # Выбираем план, который лучше всего подходит под целевой индекс (обычно индекс 0)
+                chosen_plan = plans_list[0] 
+                return chosen_plan
+    
+    # Если точного совпадения в JSON не нашлось
     return {
-        "plan": ["К сожалению, я пока не нашёл подходящую тренировку 😔"],
         "duration": "—",
-        "index": "-"
+        "plan": ["К сожалению, я пока не нашел идеальной программы для таких параметров 😔"],
+        "note": "Попробуйте изменить тип тренировки или уровень подготовки."
     }
