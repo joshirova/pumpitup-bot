@@ -1,23 +1,31 @@
-# bot.py
-import asyncio
-from telegram.ext import ApplicationBuilder
+"""PumpItUp — Telegram-бот для подбора персональных тренировок.
+
+Запуск:
+    python bot.py
+
+Перед запуском создайте .env файл со строкой:
+    TELEGRAM_TOKEN=<ваш токен от @BotFather>
+"""
+
+from telegram.ext import ApplicationBuilder, CommandHandler
+
 from config import TELEGRAM_TOKEN
+from handlers.conversation import cmd_help, get_conversation_handler
 
-# Импортируем только функцию настройки, которая создаёт все нужные связи
-from handlers.user_handlers import setup_handlers
 
-def main():
-    print("⚙️ Настройка приложения...")
+def main() -> None:
+    if not TELEGRAM_TOKEN:
+        raise SystemExit("TELEGRAM_TOKEN не задан в .env. См. README.md")
+
+    print("⚙️  Запуск PumpItUp...")
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
-    
-    # Регистрируем все команды и обработчики из одного файла
-    setup_handlers(app)
-    
-    print("🤖 Бот PumpItUp запущен! Ждите сообщения от пользователя.")
-    try:
-        app.run_polling()
-    except KeyboardInterrupt:
-        print("\n❌ Бот остановлен пользователем.")
+
+    app.add_handler(get_conversation_handler())
+    app.add_handler(CommandHandler("help", cmd_help))
+
+    print("🤖 Бот запущен. Ctrl+C для остановки.")
+    app.run_polling()
+
 
 if __name__ == "__main__":
     main()

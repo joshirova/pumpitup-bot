@@ -1,0 +1,124 @@
+{
+  "_meta": {
+    "source": "ACSM's Guidelines for Exercise Testing and Prescription, 11th edition (2021); ACSM Exercise is Medicine Rx Series",
+    "purpose": "Clinical prescription protocols for 6 medical conditions",
+    "note": "Values are conservative defaults based on ACSM 11th ed. and Exercise is Medicine handouts. Verify against current ACSM PDFs before clinical use."
+  },
+
+  "obesity": {
+    "name_ru": "Ожирение",
+    "name_en": "Obesity (BMI ≥ 30)",
+    "fitt": {
+      "frequency_per_week": [3, 5],
+      "intensity": "moderate",
+      "intensity_hr_pct": [55, 70],
+      "intensity_rpe": [4, 6],
+      "time_min_per_session": [30, 60],
+      "type": ["cardio_low", "mixed"]
+    },
+    "preferred_modalities": ["cardio_low", "mixed"],
+    "forbidden_modalities": ["cardio_high"],
+    "forbidden_categories": ["plyometrics"],
+    "preferred_categories": ["cardio", "strength", "stretching"],
+    "max_intensity": "moderate",
+    "notes_ru": "Приоритет — низкоударные аэробные упражнения. Избегайте прыжковых нагрузок и упражнений с высокой осевой нагрузкой на суставы. Силовые упражнения 2 раза в неделю на основные мышечные группы. Постепенно увеличивайте длительность сессии до 60 минут."
+  },
+
+  "hypertension": {
+    "name_ru": "Артериальная гипертензия",
+    "name_en": "Hypertension",
+    "fitt": {
+      "frequency_per_week": [5, 7],
+      "intensity": "moderate",
+      "intensity_hr_pct": [40, 60],
+      "intensity_rpe": [3, 5],
+      "time_min_per_session": [30, 60],
+      "type": ["cardio_low", "mixed"]
+    },
+    "preferred_modalities": ["cardio_low", "mixed"],
+    "forbidden_modalities": ["cardio_high"],
+    "forbidden_categories": ["plyometrics", "powerlifting", "olympic weightlifting"],
+    "preferred_categories": ["cardio", "stretching", "strength"],
+    "max_intensity": "moderate",
+    "notes_ru": "Аэробные нагрузки умеренной интенсивности — основа протокола. Избегайте высокоинтенсивной интервальной работы и подъёмов с натуживанием (приём Вальсальвы повышает АД). Силовые — с лёгкими и средними весами, 12–15 повторов. Контролируйте АД до и после тренировки."
+  },
+
+  "tachycardia": {
+    "name_ru": "Тахикардия / нестабильная ЧСС",
+    "name_en": "Tachycardia / unstable resting HR",
+    "fitt": {
+      "frequency_per_week": [3, 5],
+      "intensity": "low",
+      "intensity_hr_pct": [40, 55],
+      "intensity_rpe": [2, 4],
+      "time_min_per_session": [20, 40],
+      "type": ["cardio_low"]
+    },
+    "preferred_modalities": ["cardio_low"],
+    "forbidden_modalities": ["cardio_high"],
+    "forbidden_categories": ["plyometrics", "powerlifting", "olympic weightlifting", "strongman"],
+    "preferred_categories": ["cardio", "stretching"],
+    "max_intensity": "low",
+    "notes_ru": "Тренировки только низкой интенсивности. ЧСС не должна превышать 55 % от максимальной. Ходьба, лёгкое плавание, мягкий велотренажёр. Перед началом протокола обязательна консультация кардиолога. При появлении симптомов (одышка, головокружение, боль в груди) прекратите тренировку."
+  },
+
+  "diabetes2": {
+    "name_ru": "Сахарный диабет 2 типа",
+    "name_en": "Type 2 Diabetes Mellitus",
+    "fitt": {
+      "frequency_per_week": [3, 5],
+      "intensity": "moderate",
+      "intensity_hr_pct": [55, 70],
+      "intensity_rpe": [4, 6],
+      "time_min_per_session": [30, 60],
+      "type": ["cardio_low", "mixed", "strength"]
+    },
+    "preferred_modalities": ["cardio_low", "mixed", "strength"],
+    "forbidden_modalities": [],
+    "forbidden_categories": ["plyometrics"],
+    "preferred_categories": ["cardio", "strength", "stretching"],
+    "max_intensity": "moderate",
+    "notes_ru": "Комбинация аэробных и силовых упражнений даёт лучший контроль гликемии (ACSM/ADA Joint Position Statement). Не более 2 дней подряд без активности. Измеряйте уровень глюкозы до и после тренировки. Имейте при себе быстрые углеводы на случай гипогликемии."
+  },
+
+  "back_pain": {
+    "name_ru": "Боли в спине",
+    "name_en": "Chronic low back pain",
+    "fitt": {
+      "frequency_per_week": [3, 5],
+      "intensity": "low",
+      "intensity_hr_pct": [40, 60],
+      "intensity_rpe": [3, 5],
+      "time_min_per_session": [20, 40],
+      "type": ["cardio_low", "stretching"]
+    },
+    "preferred_modalities": ["cardio_low", "mixed"],
+    "forbidden_modalities": ["cardio_high"],
+    "forbidden_categories": ["plyometrics", "powerlifting", "strongman"],
+    "preferred_categories": ["stretching", "cardio", "strength"],
+    "max_intensity": "moderate",
+    "forbidden_movements": ["осевая нагрузка на позвоночник", "становая тяга со штангой", "приседания с тяжёлой штангой", "румынская тяга с большим весом"],
+    "notes_ru": "Приоритет — упражнения на стабилизацию кора (планка, ягодичный мост, bird-dog). Избегайте осевой нагрузки на позвоночник. Включайте растяжку каждое занятие. Силовые — только с собственным весом или лёгкими гантелями до купирования острой боли."
+  },
+
+  "knee_injury": {
+    "name_ru": "Травмы коленей",
+    "name_en": "Knee injury / chronic knee pain",
+    "fitt": {
+      "frequency_per_week": [3, 5],
+      "intensity": "low",
+      "intensity_hr_pct": [50, 65],
+      "intensity_rpe": [3, 5],
+      "time_min_per_session": [20, 40],
+      "type": ["cardio_low", "strength"]
+    },
+    "preferred_modalities": ["cardio_low", "strength"],
+    "forbidden_modalities": ["cardio_high"],
+    "forbidden_categories": ["plyometrics"],
+    "preferred_categories": ["cardio", "strength", "stretching"],
+    "max_intensity": "moderate",
+    "forbidden_movements": ["глубокие приседания", "выпады с большим весом", "прыжки", "бег по твёрдой поверхности"],
+    "preferred_alternatives": ["плавание", "велотренажёр", "эллиптический тренажёр", "жим ногами с ограниченной амплитудой"],
+    "notes_ru": "Безударные модальности — основа протокола. Плавание и велотренажёр предпочтительнее ходьбы и бега. Силовые упражнения для квадрицепсов (без полного сгибания колена) укрепляют сустав. Полное сгибание колена в нагрузке (приседы ниже параллели) исключается."
+  }
+}

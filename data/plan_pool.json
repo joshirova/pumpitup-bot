@@ -1,0 +1,482 @@
+[
+  {
+    "plan_id": 0,
+    "modality": "cardio_low",
+    "intensity": "low",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 1,
+    "modality": "cardio_low",
+    "intensity": "low",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 2,
+    "modality": "cardio_low",
+    "intensity": "low",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 3,
+    "modality": "cardio_low",
+    "intensity": "low",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 4,
+    "modality": "cardio_low",
+    "intensity": "low",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 5,
+    "modality": "cardio_low",
+    "intensity": "low",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 6,
+    "modality": "cardio_low",
+    "intensity": "moderate",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 4
+  },
+  {
+    "plan_id": 7,
+    "modality": "cardio_low",
+    "intensity": "moderate",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 4
+  },
+  {
+    "plan_id": 8,
+    "modality": "cardio_low",
+    "intensity": "moderate",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 9,
+    "modality": "cardio_low",
+    "intensity": "moderate",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 10,
+    "modality": "cardio_low",
+    "intensity": "moderate",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 11,
+    "modality": "cardio_low",
+    "intensity": "moderate",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 12,
+    "modality": "cardio_low",
+    "intensity": "high",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 13,
+    "modality": "cardio_low",
+    "intensity": "high",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 14,
+    "modality": "cardio_low",
+    "intensity": "high",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 15,
+    "modality": "cardio_low",
+    "intensity": "high",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 16,
+    "modality": "cardio_low",
+    "intensity": "high",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 2
+  },
+  {
+    "plan_id": 17,
+    "modality": "cardio_low",
+    "intensity": "high",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 2
+  },
+  {
+    "plan_id": 18,
+    "modality": "cardio_high",
+    "intensity": "moderate",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 4
+  },
+  {
+    "plan_id": 19,
+    "modality": "cardio_high",
+    "intensity": "moderate",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 4
+  },
+  {
+    "plan_id": 20,
+    "modality": "cardio_high",
+    "intensity": "moderate",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 21,
+    "modality": "cardio_high",
+    "intensity": "moderate",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 22,
+    "modality": "cardio_high",
+    "intensity": "moderate",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 23,
+    "modality": "cardio_high",
+    "intensity": "moderate",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 24,
+    "modality": "cardio_high",
+    "intensity": "high",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 25,
+    "modality": "cardio_high",
+    "intensity": "high",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 26,
+    "modality": "cardio_high",
+    "intensity": "high",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 27,
+    "modality": "cardio_high",
+    "intensity": "high",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 28,
+    "modality": "cardio_high",
+    "intensity": "high",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 2
+  },
+  {
+    "plan_id": 29,
+    "modality": "cardio_high",
+    "intensity": "high",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 2
+  },
+  {
+    "plan_id": 30,
+    "modality": "strength",
+    "intensity": "moderate",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 4
+  },
+  {
+    "plan_id": 31,
+    "modality": "strength",
+    "intensity": "moderate",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 4
+  },
+  {
+    "plan_id": 32,
+    "modality": "strength",
+    "intensity": "moderate",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 33,
+    "modality": "strength",
+    "intensity": "moderate",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 34,
+    "modality": "strength",
+    "intensity": "moderate",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 35,
+    "modality": "strength",
+    "intensity": "moderate",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 36,
+    "modality": "strength",
+    "intensity": "high",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 37,
+    "modality": "strength",
+    "intensity": "high",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 38,
+    "modality": "strength",
+    "intensity": "high",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 39,
+    "modality": "strength",
+    "intensity": "high",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 40,
+    "modality": "strength",
+    "intensity": "high",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 2
+  },
+  {
+    "plan_id": 41,
+    "modality": "strength",
+    "intensity": "high",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 2
+  },
+  {
+    "plan_id": 42,
+    "modality": "mixed",
+    "intensity": "low",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 43,
+    "modality": "mixed",
+    "intensity": "low",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 44,
+    "modality": "mixed",
+    "intensity": "low",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 45,
+    "modality": "mixed",
+    "intensity": "low",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 46,
+    "modality": "mixed",
+    "intensity": "low",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 47,
+    "modality": "mixed",
+    "intensity": "low",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 5
+  },
+  {
+    "plan_id": 48,
+    "modality": "mixed",
+    "intensity": "moderate",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 4
+  },
+  {
+    "plan_id": 49,
+    "modality": "mixed",
+    "intensity": "moderate",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 4
+  },
+  {
+    "plan_id": 50,
+    "modality": "mixed",
+    "intensity": "moderate",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 51,
+    "modality": "mixed",
+    "intensity": "moderate",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 52,
+    "modality": "mixed",
+    "intensity": "moderate",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 53,
+    "modality": "mixed",
+    "intensity": "moderate",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 54,
+    "modality": "mixed",
+    "intensity": "high",
+    "duration_min": 25,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 55,
+    "modality": "mixed",
+    "intensity": "high",
+    "duration_min": 25,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 56,
+    "modality": "mixed",
+    "intensity": "high",
+    "duration_min": 35,
+    "equipment": "home",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 57,
+    "modality": "mixed",
+    "intensity": "high",
+    "duration_min": 35,
+    "equipment": "gym",
+    "weekly_frequency_target": 3
+  },
+  {
+    "plan_id": 58,
+    "modality": "mixed",
+    "intensity": "high",
+    "duration_min": 45,
+    "equipment": "home",
+    "weekly_frequency_target": 2
+  },
+  {
+    "plan_id": 59,
+    "modality": "mixed",
+    "intensity": "high",
+    "duration_min": 45,
+    "equipment": "gym",
+    "weekly_frequency_target": 2
+  }
+]
